@@ -1,23 +1,31 @@
 import React from 'react';
-import { Component } from 'react';
 import './App.css';
 import HomePage from './pages/homepage/homepage.component' ;
+import {Switch, Route} from 'react-router-dom';
 
-// class App extends Component() {
-//   render(){
-//     return (
-//       <div className="App">
-//        <HomePage/>
-//       </div>
-//     );
-//   }
-  
-// }
+const Hatspage = () => (
+  <div>
+    <h1>Hatspage</h1>
+    <p>This is Hats page here you can see all the Hats stocks </p>
+    <lead>lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+    when an unknown printer took a galley of type and scrambled it to make a type 
+    specimen book. It has survived not only five centuries, but also the leap into 
+    electronic typesetting, remaining essentially unchanged. It was popularised in 
+    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</lead>
+
+  </div>
+);
 
 function App(){
   return (
     <div className="App">
-      <HomePage />
+      <Switch>
+        <Route exact path='/' component={HomePage}/>
+        <Route path='/hats' component={Hatspage}/>
+      </Switch>
+      
     </div>
   )
 }
