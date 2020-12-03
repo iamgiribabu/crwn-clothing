@@ -5,6 +5,9 @@ import {ReactComponent as Logo } from '../../assets/logo.svg';
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 
+import {connect} from 'react-redux'; // higher component ; used to givr access to component related to state;
+
+
 
 const Header = ({currentUser})=>(
     <div className='header'>
@@ -26,4 +29,8 @@ const Header = ({currentUser})=>(
     </div>
 )
 
-export default Header;
+const mapStateToProps = state => ({
+    currentUser : state.user.currentUser
+})
+
+export default  connect(mapStateToProps)(Header);
