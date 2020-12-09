@@ -6,10 +6,11 @@ import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 
 import {connect} from 'react-redux'; // higher component ; used to givr access to component related to state;
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../custom-button/custom-button.component';
 
 
-
-const Header = ({currentUser})=>(
+const Header = ({currentUser, hidden})=>(
     <div className='header'>
         <Link className='logo-container' to='/'>
             <Logo className='logo' />
@@ -19,18 +20,28 @@ const Header = ({currentUser})=>(
             <Link className='option' to=''>CONTACT US</Link>
             
             {
-                currentUser ?
-                <Link to='/' className='option' onClick={()=> auth.signOut()}>SIGN OUT</Link>
+                currentUser ? 
+                (
+                    <Link to='/' className='option' onClick={()=> auth.signOut()}>SIGN OUT</Link>
+                )
                 :
-                <Link className='option' to='/signin'>SIGN IN</Link>
+                (
+                    <Link className='option' to='/signin'>SIGN IN</Link>
+
+                )
             }
+            <CartIcon />
             
         </div>
+        {
+            hidden ? null : <CartDropdown />
+        }
     </div>
 )
 
-const mapStateToProps = state => ({
-    currentUser : state.user.currentUser
+const mapStateToProps = ({user : {currentUser}, cart : {hidden}}) => ({ //advance level of destructure
+    currentUser ,
+    hidden
 })
 
 export default  connect(mapStateToProps)(Header);
