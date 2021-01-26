@@ -7,7 +7,8 @@ import { auth } from '../../firebase/firebase.utils';
 
 import {connect} from 'react-redux'; // higher component ; used to givr access to component related to state;
 import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../custom-button/custom-button.component';
+// import CartDropdown from '../custom-button/custom-button.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 
 const Header = ({currentUser, hidden})=>(
@@ -18,26 +19,24 @@ const Header = ({currentUser, hidden})=>(
         <div className='options'>
             <Link className='option' to='/shop'>SHOP</Link>
             <Link className='option' to=''>CONTACT US</Link>
-            
-            {
+            {   
                 currentUser ? 
-                (
-                    <Link to='/' className='option' onClick={()=> auth.signOut()}>SIGN OUT</Link>
+                (   <div className='option'>
+                        <lead className='option'>{currentUser.displayName}</lead>
+                        <div  className='option' onClick={()=> auth.signOut()}> SIGN OUT</div>
+                    </div>
                 )
                 :
-                (
-                    <Link className='option' to='/signin'>SIGN IN</Link>
-
-                )
+                (<Link className='option' to='/signin'>SIGN IN</Link>)
             }
             <CartIcon />
-            
+        
+
         </div>
-        {
-            hidden ? null : <CartDropdown />
-        }
+        {hidden ? null : <CartDropdown />}
+        
     </div>
-)
+);
 
 const mapStateToProps = ({user : {currentUser}, cart : {hidden}}) => ({ //advance level of destructure
     currentUser ,

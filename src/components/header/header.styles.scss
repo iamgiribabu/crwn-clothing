@@ -4,13 +4,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  // border: 2px solid red;
-  // border-radius: 12px;
+  border: 2px solid red;
+  border-radius: 12px;
   
   .logo-container {
     height: 100%;
     width: 70px;
     padding: 10px 15px;
+    // padding: 25px;
     
     margin-top: -25px;
 
@@ -29,9 +30,12 @@
     justify-content: flex-end;
 
     .option {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
       padding: 10px 15px;
       cursor: pointer;
     }
   }
 }
-  
