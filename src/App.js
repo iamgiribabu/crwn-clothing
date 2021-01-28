@@ -8,6 +8,8 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+
+
 class App extends React.Component{
   unsubscribeFromAuth = null ;
 
