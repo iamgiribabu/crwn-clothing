@@ -22,7 +22,7 @@ const Header = ({currentUser, hidden})=>(
             {   
                 currentUser ? 
                 (   <div className='option'>
-                        <lead className='option'>{currentUser.displayName}</lead>
+                        <p className='option'>{currentUser.displayName}</p>
                         <div  className='option' onClick={()=> auth.signOut()}> SIGN OUT</div>
                     </div>
                 )

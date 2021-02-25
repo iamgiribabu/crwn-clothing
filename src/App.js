@@ -47,6 +47,8 @@ class App extends React.Component{
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route exact path='/shop' component={ShopPage}/>
+          
+
           <Route exact path='/Signin' render= {
             ()=> this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)
           } />
@@ -59,6 +61,8 @@ class App extends React.Component{
   }
   
 }
+
+
 
 const mapStateToProps = createStructuredSelector (
   {
