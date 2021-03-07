@@ -2,11 +2,12 @@ import React from 'react';
 import './collection.styles.scss';
 import CollectionItem from '../../components/collection-item/collection-item.component';
 import { connect } from 'react-redux';
-import {selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
+// import {selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
+import {selectCollection } from '../../redux/shop/shop.selectors';
 const CollectionPage = ({collection}) => {
     const { title, items } = collection;
     console.log(collection);
-    // console.log(match.params.categoryId);
+    
     return (
         <div className='collection-page'>
             <h2 className='title'>{title}</h2>
@@ -23,7 +24,7 @@ const CollectionPage = ({collection}) => {
 }
 
 const mapStateToProps = (state,ownProps) => ({
-    collection : selectCollectionsForPreview 
+    collection :selectCollection(ownProps.match.params.collectionId)(state)
 })
 
 export default connect(mapStateToProps)(CollectionPage);

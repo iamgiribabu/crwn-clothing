@@ -5,12 +5,8 @@ import './collection-overview.styles.scss';
 import CollectionPreview from '../preview-component/collection-preview';
 import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 
-
-
 const CollectionOverview = ({collections}) => {
-    
     return (
-
         <div className='collection-overview'>
         {
             collections.map(({id, ...otherCollectionProps})=>(
@@ -18,7 +14,6 @@ const CollectionOverview = ({collections}) => {
             )) 
         }
         </div>
-
     )
 }
 
