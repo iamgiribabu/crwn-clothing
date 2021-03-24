@@ -17,10 +17,10 @@ export const createUserProfileDocument = async (userAuth, additionalData)=>{
 
   const userRef = firestore.doc(`users/${userAuth.uid}`); // getting the user
   const snapShot = await userRef.get(); //getting snapshot
+  
   if(!snapShot.exists){
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-
     try{
       await userRef.set({   //creating data
         displayName,
@@ -33,11 +33,7 @@ export const createUserProfileDocument = async (userAuth, additionalData)=>{
       console.log('error creating user', error.message);
     }
   }
-
-
   return userRef;
-  // console.log(snapShot)
-  // console.log(firestore.doc('users/128fdashadu'));
 }
 
 
@@ -45,6 +41,43 @@ firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+//Adding data to firestore
+export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
+  // creating collection in firestore.
+  const collectionRef = firestore.collection(collectionKey); 
+
+  const batch = firestore.batch();
+
+  objectToAdd.forEach(obj => {
+    // it will new document reference and randomly  genrate a new id
+    const newDocRef = collectionRef.doc();
+    //instead for newdocRef witll do batch.set
+    batch.set(newDocRef, obj);
+  });
+  // now we will fire out the batch requests and return us a promise
+  return await batch.commit()
+}
+
+// getting data from database to App
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transFormedCollection = collections.docs.map(doc => {
+    const {title, items} = doc.data();
+
+    return{
+      routeName : encodeURI(title.toLowerCase()),
+      id : doc.id,
+      title, 
+      items
+    }
+  })
+
+  return  transFormedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  },{});
+}
 
 //setup google authentication
 
