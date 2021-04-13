@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 import {Link }  from 'react-router-dom'
-import {ReactComponent as Logo } from '../../assets/logo.svg';
+import {ReactComponent as Logo } from '../../assets/logos.svg';
 
 const OptionsContainerStyles = css`
     display: flex;
@@ -22,16 +22,16 @@ export const HeaderContainer = styled.div`
   
 `
 export const LogoContainer = styled(Link)`
+    display : flex;
+    justify-content : center;
+    align-items : center;
     height: 100%;
-    width: 70px;
-    padding: 10px 15px;
-    // padding: 25px;
-    
-    margin-top: -25px;
+    width: 10%;
+    /* margin-top: -25px; */
 `
 export const LogoImage = styled(Logo)`
-    height : 100px;
-    width: 50px;
+    height : 100%;
+    width: 100%;
 `
 
 export const OptionsContainer = styled.div`
